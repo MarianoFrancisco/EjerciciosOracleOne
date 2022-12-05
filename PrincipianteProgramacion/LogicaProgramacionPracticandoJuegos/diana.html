@@ -1,0 +1,69 @@
+<canvas width="600" height="400"> </canvas>
+
+<script>
+	var pantalla = document.querySelector("canvas");
+	var pincel = pantalla.getContext("2d");		
+	pincel.fillStyle = "yellow";
+	pincel.fillRect(0,0,600,400); 
+	pincel.font="40px Georgia";
+    pincel.fillStyle="black";
+	pincel.fillText("Juego Diana",200,200);
+	pincel.font="20px Georgia";
+	pincel.fillText("Aciertale!",250,250);
+	var radio = 10;
+	var xAleatorio;
+	var yAleatorio;
+
+	function disenioCircunferencia(x,y,radio, color){
+		pincel.fillStyle = color;
+		pincel.beginPath();
+		pincel.arc(x,y,radio,0,2*Math.PI);
+		pincel.fill();
+	}	
+
+	function limpiarPantalla(){
+
+		pincel.clearRect(0,0,600,400);
+
+	}
+
+	var x = 0
+
+
+	function disenharObjetivo(x,y){
+
+		disenioCircunferencia(x,y,radio + 20,"red");
+		disenioCircunferencia(x,y,radio + 10,"white");
+		disenioCircunferencia(x,y,radio,"red");
+	}
+	var max=0;
+	function sortearPosicion(maximo){
+		max=maximo-radio-20;
+		return Math.floor(Math.random()*max);
+	}
+	function actualizarPantalla(){
+
+		limpiarPantalla();
+		xAleatorio = sortearPosicion(600);
+		yAleatorio = sortearPosicion(400,);
+		if(xAleatorio<30){
+			xAleatorio=xAleatorio+30;
+		}if(yAleatorio<30){
+			yAleatorio=yAleatorio+30;
+		}
+		disenharObjetivo(xAleatorio,yAleatorio);
+		x++;
+	}
+	setInterval(actualizarPantalla,1000);
+	function disparar(evento){
+		var x = evento.pageX - pantalla.offsetLeft;
+		var y = evento.pageY - pantalla.offsetTop;
+		if ((x < xAleatorio + radio) && (x > xAleatorio - radio) &&
+			(y < yAleatorio + radio) && (y > yAleatorio -radio) ) {
+			alert("Acertaste");
+		}
+	}
+
+	pantalla.onclick = disparar;
+
+</script> 

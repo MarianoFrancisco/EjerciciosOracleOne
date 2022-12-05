@@ -1,0 +1,29 @@
+<canvas width="600" height="400"> </canvas>
+
+<script>
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");    
+    pincel.fillStyle = "purple";
+    pincel.fillRect(0,0,600,400); 
+    var color=["blue","red","green"];
+    var numeroColor=0;
+    function dibujarCirculo(evento){
+        var x = evento.pageX - pantalla.offsetLeft;
+        var y = evento.pageY - pantalla.offsetTop;    
+        pincel.fillStyle = color[numeroColor];
+        pincel.beginPath();
+        pincel.arc(x,y,10,0,2*3.14);
+        pincel.fill();
+        console.log(x + "," + y);        
+    }
+    //azul,rojo,verde
+    function alterarColor(){
+        if(numeroColor<2){
+            numeroColor++;
+        }else{
+            numeroColor=0;
+        }
+    }
+    pantalla.onclick = dibujarCirculo;
+    pantalla.oncontextmenu = alterarColor;
+</script> 

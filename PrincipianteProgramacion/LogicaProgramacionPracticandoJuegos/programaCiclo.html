@@ -1,0 +1,22 @@
+<!--width=ancho height=alto-->
+<canvas width="600" height="400" a>
+	
+</canvas>
+<!--conectar etiquetas html con acciones-->
+<script >
+	var pantalla=document.querySelector("canvas");
+	var pincel= pantalla.getContext("2d");
+	function dibujar(x,y){
+		pincel.fillStyle="Blue";
+		pincel.fillRect(posicionX,y,50,50);//lenar
+		pincel.strokeStyle="Black";
+		pincel.strokeRect(x,y,50,50);
+	}
+	//x=0,y=0 esquina superior izquierda
+	var posicionX=0;
+	for (var i = 0; i<=10; i++) {
+		dibujar(posicionX,0);
+		dibujar(posicionX,50);
+		posicionX=posicionX+50;
+	}
+</script>
